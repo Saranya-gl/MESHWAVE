@@ -53,9 +53,9 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(height: 20),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Phone Number',
-                      prefixIcon: Icon(Icons.phone),
-                    ),
+                        labelText: 'Phone Number',
+                        prefixIcon: Icon(Icons.phone),
+                        fillColor: Color(0x862195F3)),
                   ),
                   SizedBox(height: 20),
                   TextField(
@@ -93,13 +93,6 @@ class _SignInPageState extends State<SignInPage> {
                     },
                   ),
                   SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {
-                      // Add your create account logic here
-                      // Navigate to the create account screen
-                    },
-                    child: Text('Sign '),
-                  ),
                 ],
               ),
             ),
@@ -120,7 +113,7 @@ class CustomSignInButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: Color(0x872195F3), // Change the button color as needed
+        primary: Color(0x862195F3), // Change the button color as needed
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
