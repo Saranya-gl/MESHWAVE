@@ -1,69 +1,73 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(ForgotPasswordPage());
+  runApp(MyApp());
 }
 
-class ForgotPasswordPage extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ForgotPasswordPage(),
+    );
+  }
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  bool isLoading = false;
-
-  void _sendEmail() {
-    setState(() {
-      isLoading = true;
-      // Simulate sending an email (you can replace this with actual email sending logic).
-      Future.delayed(Duration(seconds: 2), () {
-        isLoading = false;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Password reset email sent.'),
-        ));
-      });
-    });
-  }
-
+class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Forgot Password'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 20.0),
-
-            // Username input field
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
-            ),
-            SizedBox(height: 16.0),
-
-            // Email input field
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 16.0),
-
-            // Send Email button
-            ElevatedButton(
-              onPressed: isLoading ? null : _sendEmail,
-              child: Text('Send Email'),
-            ),
-            SizedBox(height: 16.0),
-
-            // Loading spinner when sending email
-            if (isLoading) CircularProgressIndicator(),
-          ],
+      backgroundColor: Color(0xFFF9D8C5), // Set the background color
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                'assets/forgot_password_image.jpg', // Replace with your image asset path
+                height: 20, // Adjust the image height as needed
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Forgot Password',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF20485A), // Set the text color
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Username or Phone Number',
+                  prefixIcon: Icon(Icons.person),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Add your logic to send a reset password link here
+                  // Typically, this would involve sending an email to the user with a reset link
+                  // You can also navigate to a confirmation page
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF20485A), // Set the button color
+                ),
+                child: Text('Reset Password'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -113,7 +113,7 @@ class CustomSignInButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: Color(0x862195F3), // Change the button color as needed
+        backgroundColor: Color(0x862195F3), // Change the button color as needed
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
