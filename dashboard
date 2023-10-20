@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DashboardPage(),
+    );
+  }
+}
+
+class DashboardPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              width: 672,
+              height: 1300,
+              decoration: BoxDecoration(
+                color: Color(0xfffdfcfc),
+              ),
+            ),
+            Container(
+              width: 672,
+              height: 115,
+              decoration: BoxDecoration(
+                color: Color(0xfff9d8c5),
+              ),
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 43,
+              height: 38,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 20.0000057220459,
+              height: 20.0000057220459,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 55.0000114440918,
+              height: 55.0000114440918,
+            ),
+            Container(
+              width: 672,
+              height: 95,
+              decoration: BoxDecoration(
+                color: Color(0xfff9d8c5),
+              ),
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 60,
+              height: 50,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 33.33333206176758,
+              height: 27.777774810791016,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 71.62999725341797,
+              height: 56.560001373291016,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 60,
+              height: 52.5,
+            ),
+            Image.asset(
+              "assets/Vector.png",
+              width: 54.75,
+              height: 53.5,
+            ),
+            Container(
+              width: 538.1282348632812,
+              height: 1300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0), // You can adjust the border radius
+                color: Color(0xff20485a),
+              ),
+            ),
+            Positioned(
+              top: 20,
+              left: 20,
+              child: Text(
+                "Dash Board",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 200,
+              left: 20,
+              child: Text(
+                "Crew Member Details",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            // Add more Positioned widgets for other text items
+          ],
+        ),
+      ),
+    );
+  }
+}
