@@ -1,127 +1,30 @@
+import 'package:fishbook/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignInPage(),
-    );
-  }
-}
-
-class SignInPage extends StatefulWidget {
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
-  bool rememberMe = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Card(
-            margin: EdgeInsets.all(20),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Phone Number',
-                      prefixIcon: Icon(Icons.phone),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  CheckboxListTile(
-                    value: rememberMe,
-                    onChanged: (value) {
-                      setState(() {
-                        rememberMe = value!;
-                      });
-                    },
-                    title: Text('Remember Me'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    secondary: Icon(Icons.check),
-                  ),
-                  SizedBox(height: 20),
-                  CustomSignInButton(
-                    onPressed: () {
-                      // Add your sign-in logic here
-                      // Navigate to the next screen upon successful sign-in
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {
-                      // Add your create account logic here
-                      // Navigate to the create account screen
-                    },
-                    child: Text('Create Account'),
-                  ),
-                ],
-              ),
-            ),
-          ),
+      debugShowCheckedModeBanner: false,
+      title: 'Welcome Page',
+      theme: ThemeData(
+        fontFamily: "Poppins",
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: const Color(0xFFF9D8C5),
+        ),
+        useMaterial3: true,
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: Color(0xFF269493),
         ),
       ),
-    );
-  }
-}
-
-class CustomSignInButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  CustomSignInButton({required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        primary: Colors.blue, // Change the button color as needed
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.login, size: 24), // Add your desired icon
-          SizedBox(width: 8), // Add spacing between the icon and text
-          Text('Sign In', style: TextStyle(fontSize: 18)),
-        ],
-      ),
+      home: homepage(),
     );
   }
 }

@@ -8,19 +8,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignUpPage(),
+      home: SignInPage(),
     );
   }
 }
 
-class SignUpPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  bool agreeToTerms = false;
-  String selectedRole = ''; // To store the selected role
+class _SignInPageState extends State<SignInPage> {
+  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,78 +36,11 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedRole = 'Owner';
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: selectedRole == 'Owner'
-                                ? Color.fromARGB(255, 68, 186, 225)
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Owner',
-                                style: TextStyle(
-                                  color: selectedRole == 'Owner'
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Text('👑', style: TextStyle(fontSize: 24)),
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedRole = 'Crew Member';
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: selectedRole == 'Crew Member'
-                                ? Color.fromARGB(255, 68, 186, 225)
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Crew Member',
-                                style: TextStyle(
-                                  color: selectedRole == 'Crew Member'
-                                      ? Color.fromARGB(255, 254, 254, 254)
-                                      : Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Text('👷‍♂️', style: TextStyle(fontSize: 24)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   SizedBox(height: 20),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Full Name',
-                      prefixIcon: Icon(Icons.person),
+                      labelText: 'Name',
+                      prefixIcon: Icon(Icons.supervised_user_circle),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -121,9 +53,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(height: 20),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Phone Number',
-                      prefixIcon: Icon(Icons.phone),
-                    ),
+                        labelText: 'Phone Number',
+                        prefixIcon: Icon(Icons.phone),
+                        fillColor: Color(0x862195F3)),
                   ),
                   SizedBox(height: 20),
                   TextField(
@@ -142,44 +74,54 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Row(
-                    children: <Widget>[
-                      Checkbox(
-                        value: agreeToTerms,
-                        onChanged: (value) {
-                          setState(() {
-                            agreeToTerms = value!;
-                          });
-                        },
-                      ),
-                      Text('Remember me'),
-                    ],
+                  CheckboxListTile(
+                    value: rememberMe,
+                    onChanged: (value) {
+                      setState(() {
+                        rememberMe = value!;
+                      });
+                    },
+                    title: Text('Remember Me'),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    secondary: Icon(Icons.check),
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(
+                  CustomSignInButton(
                     onPressed: () {
-                      // Add your sign-up logic here
-                      // Navigate to the next screen upon successful sign-up
+                      // Add your sign-in logic here
+                      // Navigate to the next screen upon successful sign-in
                     },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Change the button color as needed
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.person_add,
-                            size: 24), // Add your desired icon
-                        SizedBox(
-                            width: 8), // Add spacing between the icon and text
-                        Text('Create Account', style: TextStyle(fontSize: 18)),
-                      ],
-                    ),
                   ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomSignInButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  CustomSignInButton({required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0x862195F3), // Change the button color as needed
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.login, size: 24), // Add your desired icon
+          SizedBox(width: 8), // Add spacing between the icon and text
+          Text('Create Account', style: TextStyle(fontSize: 18)),
+        ],
       ),
     );
   }
