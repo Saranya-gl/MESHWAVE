@@ -9,6 +9,8 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1,
+        fixedColor: Color(0x862195F3),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
@@ -53,7 +55,8 @@ class Homepage extends StatelessWidget {
         onTap: () {},
         child: Container(
           margin: EdgeInsets.all(10),
-          child: SvgPicture.asset('assets/icons/Vector.svg'),
+          child: SvgPicture.asset('assets/icons/Vector.svg',
+              color: Color(0xFFF9D8C5)),
           height: 28,
           width: 28,
           alignment: Alignment.center,
